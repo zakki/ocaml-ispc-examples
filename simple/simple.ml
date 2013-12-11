@@ -2,11 +2,8 @@ open Ctypes
 open PosixTypes
 open Foreign
 
-let lib = Dl.(dlopen ~filename:"./simple.so" ~flags:[RTLD_NOW])
-
 let s = foreign "simple"
   (ptr float @-> ptr float @-> int32_t @-> returning void)
-  ~from:lib
 
 let simple' vin vout count =
   let vin' = Array.start vin in
